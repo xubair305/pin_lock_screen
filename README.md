@@ -29,6 +29,8 @@ dependencies:
   pin_lock_screen: ^latest_version
 ```
 
+### 2. Usage
+
 ```dart
 
 import 'package:pin_lock_screen/pin_lock_screen.dart';
