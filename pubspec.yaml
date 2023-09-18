@@ -1,7 +1,7 @@
 name: pin_lock_screen
 description: A new Flutter package project.
 version: 0.0.1
-homepage: abc
+homepage: https://github.com/xubair305/pin_lock_screen
 
 environment:
   sdk: '>=3.0.5 <4.0.0'
