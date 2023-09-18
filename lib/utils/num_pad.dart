@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 
 import 'number_button.dart';
@@ -99,8 +97,8 @@ class NumPad extends StatelessWidget {
             TextButton(
               onPressed: onDelete,
               style: ButtonStyle(
-                foregroundColor:
-                    MaterialStatePropertyAll(Theme.of(context).colorScheme.error),
+                foregroundColor: MaterialStatePropertyAll(
+                    Theme.of(context).colorScheme.error),
               ),
               child: const Text('Delete'),
             ),
