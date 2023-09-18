@@ -27,3 +27,18 @@ Add `pin_lock_screen` to your `pubspec.yaml` file:
 ```yaml
 dependencies:
   pin_lock_screen: ^latest_version
+```
+
+```dart
+ PinLockScreen(
+   correctPin: 1111,
+   pinLength: 4,
+   onPinMatched: (pin) {},
+   onPinChanged: (pin) {},
+   disableDotColor: Colors.yellow,
+   wrongPinDotColor: Colors.red,
+   filledPinDotColor: Colors.black,
+   buttonElevation: 3,
+   otsShape: BoxShape.rectangle,
+   gapBtwDotsAndNumPad: 100,
+ )
