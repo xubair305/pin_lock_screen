@@ -18,7 +18,7 @@ A Flutter package to easily integrate screen lock PIN functionality into your ap
 
 Follow these steps to get started with `pin_lock_screen`:
 
-![alt text](https://github.com/xubair305/pin_lock_screen/images/demo.gif?raw=true)
+![alt text](https://github.com/xubair305/pin_lock_screen/blob/master/images/demo.gif?raw=true)
 
 ### 1. Installation
 
