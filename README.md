@@ -1,7 +1,7 @@
 # pin_screen_lock
 
 [![Pub Version](https://img.shields.io/pub/v/pin_screen_lock.svg)](https://pub.dev/packages/pin_lock_screen)
-[![GitHub License](https://img.shields.io/github/license/yourusername/pin_screen_lock.svg)](https://github.com/xubair305/pin_lock_screen/LICENSE)
+[![GitHub License](https://img.shields.io/github/license/yourusername/pin_screen_lock.svg)](https://github.com/xubair305/pin_lock_screen)
 
 A Flutter package to easily integrate screen lock PIN functionality into your application.
 
