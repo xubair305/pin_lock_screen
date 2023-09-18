@@ -1,5 +1,5 @@
 name: pin_lock_screen
-description: A new Flutter package project.
+description: Easily integrate a secure screen lock PIN feature into your Flutter application with the pin_lock_screen package. This versatile package provides a seamless solution for enhancing the privacy and security of your app by allowing users to set and require a PIN to access sensitive content or features.
 version: 0.0.1
 homepage: https://github.com/xubair305/pin_lock_screen
 
