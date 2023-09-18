@@ -8,6 +8,7 @@ class HiddenDots extends StatelessWidget {
     this.disableDotColor,
     this.wrongPinColor,
     this.fillPinColor,
+    this.dotsShape,
     super.key,
   });
 
@@ -17,6 +18,7 @@ class HiddenDots extends StatelessWidget {
   final Color? disableDotColor;
   final Color? wrongPinColor;
   final Color? fillPinColor;
+  final BoxShape? dotsShape;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +33,7 @@ class HiddenDots extends StatelessWidget {
           width: index < enteredLength ? 28 : 24,
           margin: const EdgeInsets.symmetric(horizontal: 16),
           decoration: BoxDecoration(
-            shape: BoxShape.circle,
+            shape:dotsShape?? BoxShape.circle,
             color: isCorrect != null && !isCorrect!
                 ? wrongPinColor ?? Theme.of(context).colorScheme.errorContainer
                 : index < enteredLength

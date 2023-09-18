@@ -14,19 +14,65 @@ class PinLockScreen extends StatefulWidget {
     this.onPinMatched,
     this.onPinChanged,
     this.disableDotColor,
-    this.wrongPinColor,
-    this.fillPinColor,
+    this.wrongPinDotColor,
+    this.filledPinDotColor,
+    this.buttonElevation,
+    this.dotsShape,
+    this.gapBtwDotsAndNumPad,
   });
+
+  ///
+  /// The correct PIN that the user needs to match.
+  ///
+  final int correctPin;
+
+  ///
+  /// The length of the PIN.
+  ///
+  final int pinLength;
+
+  ///
+  /// Callback when the PIN is matched.
+  ///
+  final OnPinMatched? onPinMatched;
+
+  ///
+  /// Callback when the PIN input changes.
+  ///
+  final OnPinChanged? onPinChanged;
+
+  ///
+  /// Color for disabled (unfilled) PIN dots.
+  ///
+  final Color? disableDotColor;
+
+  ///
+  /// Color for PIN dots when the entered PIN is incorrect.
+  ///
+  final Color? wrongPinDotColor;
+
+  ///
+  /// Color for filled (correctly entered) PIN dots.
+  ///
+  final Color? filledPinDotColor;
+
+  ///
+  /// Elevation value for the number buttons [default is 4].
+  ///
+  final double? buttonElevation;
+
+  ///
+  /// Change shapes of hidden dots [default is BoxShape.circle].
+  ///
+  final BoxShape? dotsShape;
+
+  ///
+  /// Gapping between the Hidden dots and the Number pad [default is 60.0].
+  ///
+  final double? gapBtwDotsAndNumPad;
 
   @override
   State<PinLockScreen> createState() => _PinLockScreenState();
-  final int correctPin;
-  final int pinLength;
-  final OnPinMatched? onPinMatched;
-  final OnPinChanged? onPinChanged;
-  final Color? disableDotColor;
-  final Color? wrongPinColor;
-  final Color? fillPinColor;
 }
 
 class _PinLockScreenState extends State<PinLockScreen> {
@@ -34,25 +80,27 @@ class _PinLockScreenState extends State<PinLockScreen> {
   bool? isEnteredCorrect;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          HiddenDots(
-            values: value,
-            pinLength: widget.pinLength,
-            isCorrect: isEnteredCorrect,
-            disableDotColor: widget.disableDotColor,
-            wrongPinColor: widget.wrongPinColor,
-            fillPinColor: widget.fillPinColor,
-          ),
-          const SizedBox(height: 60),
-          NumPad(
-            onDelete: _onDelete,
-            onNumberTap: _onNumberTap,
-          ),
-        ],
-      ),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        HiddenDots(
+          values: value,
+          pinLength: widget.pinLength,
+          isCorrect: isEnteredCorrect,
+          disableDotColor: widget.disableDotColor,
+          wrongPinColor: widget.wrongPinDotColor,
+          fillPinColor: widget.filledPinDotColor,
+          dotsShape: widget.dotsShape,
+        ),
+        SizedBox(height: widget.gapBtwDotsAndNumPad ?? 60),
+        NumPad(
+          onDelete: _onDelete,
+          onNumberTap: _onNumberTap,
+          buttonElevation: widget.buttonElevation,
+        ),
+      ],
     );
   }
 

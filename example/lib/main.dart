@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: MyHomePage(),
     );
   }
@@ -22,13 +23,22 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PinLockScreen(
-        correctPin: 11111,
-        pinLength: 5,
-        onPinMatched: (pin) {},
-        onPinChanged: (pin) {},
-        disableDotColor: Colors.yellow,
-        wrongPinColor: Colors.orange,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          PinLockScreen(
+            correctPin: 1111,
+            pinLength: 4,
+            onPinMatched: (pin) {},
+            onPinChanged: (pin) {},
+            disableDotColor: Colors.yellow,
+            wrongPinDotColor: Colors.red,
+            filledPinDotColor: Colors.black,
+            buttonElevation: 3,
+            dotsShape: BoxShape.rectangle,
+            gapBtwDotsAndNumPad: 100,
+          ),
+        ],
       ),
     );
   }

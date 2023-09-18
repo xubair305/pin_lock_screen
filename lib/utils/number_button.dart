@@ -8,12 +8,14 @@ class NumberButton extends StatelessWidget {
     required this.size,
     required this.color,
     required this.onNumberTap,
+    this.buttonElevation,
     super.key,
   });
   final int number;
   final double size;
   final Color color;
   final OnNumberButtonPressed onNumberTap;
+  final double? buttonElevation;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class NumberButton extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(size / 2),
           ),
-          elevation: 4,
+          elevation: buttonElevation ?? 4,
           surfaceTintColor: Colors.white,
         ),
         onPressed: () {
