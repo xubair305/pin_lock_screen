@@ -30,6 +30,9 @@ dependencies:
 ```
 
 ```dart
+
+import 'package:pin_lock_screen/pin_lock_screen.dart';
+
  PinLockScreen(
    correctPin: 1111,
    pinLength: 4,

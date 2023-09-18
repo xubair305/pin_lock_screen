@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class HiddenDots extends StatelessWidget {
   const HiddenDots({
+    super.key,
     required this.values,
     required this.pinLength,
     this.isCorrect,
@@ -9,7 +10,6 @@ class HiddenDots extends StatelessWidget {
     this.wrongPinColor,
     this.fillPinColor,
     this.dotsShape,
-    super.key,
   });
 
   final String values;
@@ -33,7 +33,7 @@ class HiddenDots extends StatelessWidget {
           width: index < enteredLength ? 28 : 24,
           margin: const EdgeInsets.symmetric(horizontal: 16),
           decoration: BoxDecoration(
-            shape:dotsShape?? BoxShape.circle,
+            shape: dotsShape ?? BoxShape.circle,
             color: isCorrect != null && !isCorrect!
                 ? wrongPinColor ?? Theme.of(context).colorScheme.errorContainer
                 : index < enteredLength
