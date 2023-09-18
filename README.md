@@ -1,39 +1,27 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# pin_screen_lock
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
+[![Pub Version](https://img.shields.io/pub/v/pin_screen_lock.svg)](https://pub.dev/packages/pin_lock_screen)
+[![GitHub License](https://img.shields.io/github/license/yourusername/pin_screen_lock.svg)](https://github.com/xubair305/pin_lock_screen/LICENSE)
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+A Flutter package to easily integrate screen lock PIN functionality into your application.
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+- User-friendly PIN setup.
+- Customizable design to match your app's branding.
+- Secure encryption to protect user PIN data.
+- Flexible integration options.
+- Informative error handling.
+- Localization support for international users.
 
-## Getting started
+## Getting Started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+Follow these steps to get started with `pin_lock_screen`:
 
-## Usage
+### 1. Installation
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+Add `pin_lock_screen` to your `pubspec.yaml` file:
 
-```dart
-const like = 'sample';
-```
-
-## Additional information
-
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+```yaml
+dependencies:
+  pin_lock_screen: ^latest_version
