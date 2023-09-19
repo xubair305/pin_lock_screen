@@ -36,14 +36,20 @@ dependencies:
 import 'package:pin_lock_screen/pin_lock_screen.dart';
 
  PinLockScreen(
-   correctPin: 1111,
-   pinLength: 4,
-   onPinMatched: (pin) {},
-   onPinChanged: (pin) {},
-   disableDotColor: Colors.yellow,
-   wrongPinDotColor: Colors.red,
-   filledPinDotColor: Colors.black,
-   buttonElevation: 3,
-   otsShape: BoxShape.rectangle,
-   gapBtwDotsAndNumPad: 100,
- )
+  correctPin: 1111,
+  pinLength: 4,
+  onPinMatched: (pin) {},
+  onPinChanged: (pin) {},
+  disableDotColor: Colors.yellow,
+  wrongPinDotColor: Colors.red,
+  filledPinDotColor: Colors.black,
+  buttonElevation: 3,
+  dotsShape: BoxShape.rectangle,
+  gapBtwDotsAndNumPad: 100,
+  buttonBackgroundColor: Colors.cyan,
+  buttonForegroundColor: Colors.white,
+  buttonBorderRadius: 12,
+  buttonSize: const Size(80.0, 80.0),
+  numPadVerticalSpacing: 30,
+ numPadHorizontalSpacing: 20,
+)

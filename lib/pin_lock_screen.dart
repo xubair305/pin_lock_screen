@@ -19,6 +19,12 @@ class PinLockScreen extends StatefulWidget {
     this.buttonElevation,
     this.dotsShape,
     this.gapBtwDotsAndNumPad,
+    this.buttonBackgroundColor,
+    this.buttonForegroundColor,
+    this.buttonBorderRadius,
+    this.buttonSize,
+    this.numPadVerticalSpacing,
+    this.numPadHorizontalSpacing,
   });
 
   ///
@@ -71,6 +77,36 @@ class PinLockScreen extends StatefulWidget {
   ///
   final double? gapBtwDotsAndNumPad;
 
+  ///
+  /// Background color for number buttons.
+  ///
+  final Color? buttonBackgroundColor;
+
+  ///
+  /// Foreground color for number buttons.
+  ///
+  final Color? buttonForegroundColor;
+
+  ///
+  /// Border radius for number buttons.
+  ///
+  final double? buttonBorderRadius;
+
+  ///
+  /// Size of number buttons.
+  ///
+  final Size? buttonSize;
+
+  ///
+  /// Vertical spacing between number buttons in the number pad.
+  ///
+  final double? numPadVerticalSpacing;
+
+  ///
+  /// Horizontal spacing between number buttons in the number pad.
+  ///
+  final double? numPadHorizontalSpacing;
+
   @override
   State<PinLockScreen> createState() => _PinLockScreenState();
 }
@@ -99,12 +135,18 @@ class _PinLockScreenState extends State<PinLockScreen> {
           onDelete: _onDelete,
           onNumberTap: _onNumberTap,
           buttonElevation: widget.buttonElevation,
+          buttonBackgroundColor: widget.buttonBackgroundColor,
+          buttonForegroundColor: widget.buttonForegroundColor,
+          buttonRadius: widget.buttonBorderRadius,
+          buttonSize: widget.buttonSize,
+          numPadVerticalSpacing: widget.numPadVerticalSpacing,
+          numPadHorizontalSpacing: widget.numPadHorizontalSpacing,
         ),
       ],
     );
   }
 
-  void _onNumberTap(int number) {
+  Future<void> _onNumberTap(int number) async {
     if (value.length < widget.pinLength) {
       setState(() {
         value += number.toString();
@@ -118,6 +160,13 @@ class _PinLockScreenState extends State<PinLockScreen> {
 
       if (isCorrect) {
         widget.onPinMatched?.call(int.parse(value));
+      } else {
+        value = '';
+        await Future.delayed(const Duration(milliseconds: 300), () {
+          setState(() {
+            isEnteredCorrect = null;
+          });
+        });
       }
     }
   }

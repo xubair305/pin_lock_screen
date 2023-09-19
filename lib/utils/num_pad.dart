@@ -7,6 +7,12 @@ class NumPad extends StatelessWidget {
     required this.onNumberTap,
     this.onDelete,
     this.buttonElevation,
+    this.buttonBackgroundColor,
+    this.buttonForegroundColor,
+    this.buttonSize,
+    this.buttonRadius,
+    this.numPadVerticalSpacing,
+    this.numPadHorizontalSpacing,
     super.key,
   });
 
@@ -14,16 +20,24 @@ class NumPad extends StatelessWidget {
 
   final OnNumberButtonPressed onNumberTap;
   final double? buttonElevation;
+  final Color? buttonBackgroundColor;
+  final Color? buttonForegroundColor;
+  final Size? buttonSize;
+  final double? buttonRadius;
+  final double? numPadVerticalSpacing;
+  final double? numPadHorizontalSpacing;
 
   @override
   Widget build(BuildContext context) {
-    const buttonColor = Colors.white;
-    const size = 70.0;
+    final buttonColor = buttonBackgroundColor ?? Colors.white;
+    final size = buttonSize ?? const Size(70.0, 70.0);
+    final vSizedBox = SizedBox(height: numPadVerticalSpacing ?? 24);
+    final hSizedBox = SizedBox(width: numPadHorizontalSpacing ?? 24);
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisSize: MainAxisSize.min,
           children: [
             NumberButton(
               number: 1,
@@ -31,26 +45,34 @@ class NumPad extends StatelessWidget {
               color: buttonColor,
               onNumberTap: onNumberTap,
               buttonElevation: buttonElevation,
+              foregroundColor: buttonForegroundColor,
+              buttonRadius: buttonRadius,
             ),
+            hSizedBox,
             NumberButton(
               number: 2,
               size: size,
               color: buttonColor,
               onNumberTap: onNumberTap,
               buttonElevation: buttonElevation,
+              foregroundColor: buttonForegroundColor,
+              buttonRadius: buttonRadius,
             ),
+            hSizedBox,
             NumberButton(
               number: 3,
               size: size,
               color: buttonColor,
               onNumberTap: onNumberTap,
               buttonElevation: buttonElevation,
+              foregroundColor: buttonForegroundColor,
+              buttonRadius: buttonRadius,
             ),
           ],
         ),
-        const SizedBox(height: 24),
+        vSizedBox,
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisSize: MainAxisSize.min,
           children: [
             NumberButton(
               number: 4,
@@ -58,26 +80,34 @@ class NumPad extends StatelessWidget {
               color: buttonColor,
               onNumberTap: onNumberTap,
               buttonElevation: buttonElevation,
+              foregroundColor: buttonForegroundColor,
+              buttonRadius: buttonRadius,
             ),
+            hSizedBox,
             NumberButton(
               number: 5,
               size: size,
               color: buttonColor,
               onNumberTap: onNumberTap,
               buttonElevation: buttonElevation,
+              foregroundColor: buttonForegroundColor,
+              buttonRadius: buttonRadius,
             ),
+            hSizedBox,
             NumberButton(
               number: 6,
               size: size,
               color: buttonColor,
               onNumberTap: onNumberTap,
               buttonElevation: buttonElevation,
+              foregroundColor: buttonForegroundColor,
+              buttonRadius: buttonRadius,
             ),
           ],
         ),
-        const SizedBox(height: 24),
+        vSizedBox,
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisSize: MainAxisSize.min,
           children: [
             NumberButton(
               number: 7,
@@ -85,26 +115,34 @@ class NumPad extends StatelessWidget {
               color: buttonColor,
               onNumberTap: onNumberTap,
               buttonElevation: buttonElevation,
+              foregroundColor: buttonForegroundColor,
+              buttonRadius: buttonRadius,
             ),
+            hSizedBox,
             NumberButton(
               number: 8,
               size: size,
               color: buttonColor,
               onNumberTap: onNumberTap,
               buttonElevation: buttonElevation,
+              foregroundColor: buttonForegroundColor,
+              buttonRadius: buttonRadius,
             ),
+            hSizedBox,
             NumberButton(
               number: 9,
               size: size,
               color: buttonColor,
               onNumberTap: onNumberTap,
               buttonElevation: buttonElevation,
+              foregroundColor: buttonForegroundColor,
+              buttonRadius: buttonRadius,
             ),
           ],
         ),
-        const SizedBox(height: 24),
+        vSizedBox,
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisSize: MainAxisSize.min,
           children: [
             TextButton(
               onPressed: onDelete,
@@ -114,13 +152,17 @@ class NumPad extends StatelessWidget {
               ),
               child: const Text('Delete'),
             ),
+            hSizedBox,
             NumberButton(
               number: 0,
               size: size,
               color: buttonColor,
               onNumberTap: onNumberTap,
               buttonElevation: buttonElevation,
+              foregroundColor: buttonForegroundColor,
+              buttonRadius: buttonRadius,
             ),
+            hSizedBox,
             TextButton(
               onPressed: null,
               style: TextButton.styleFrom(
