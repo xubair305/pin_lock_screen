@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:pin_lock_screen/pin_lock_screen.dart';
 
@@ -29,8 +30,16 @@ class MyHomePage extends StatelessWidget {
           PinLockScreen(
             correctPin: 1111,
             pinLength: 4,
-            onPinMatched: (pin) {},
-            onPinChanged: (pin) {},
+            onPinMatched: (correctPin) {
+              if (kDebugMode) {
+                print(correctPin);
+              }
+            },
+            onPinChanged: (pin) {
+              if (kDebugMode) {
+                print(pin);
+              }
+            },
             disableDotColor: Colors.yellow,
             wrongPinDotColor: Colors.red,
             filledPinDotColor: Colors.black,
@@ -43,6 +52,12 @@ class MyHomePage extends StatelessWidget {
             buttonSize: const Size(80.0, 80.0),
             numPadVerticalSpacing: 30,
             numPadHorizontalSpacing: 20,
+            deleteWidget: const Icon(
+              Icons.backspace,
+              color: Colors.black,
+            ),
+            enableDone: true,
+            onDoneTap: () {},
           ),
         ],
       ),

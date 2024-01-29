@@ -5,7 +5,8 @@ import 'number_button.dart';
 class NumPad extends StatelessWidget {
   const NumPad({
     required this.onNumberTap,
-    this.onDelete,
+    this.onDeleteTap,
+    this.onDoneTap,
     this.buttonElevation,
     this.buttonBackgroundColor,
     this.buttonForegroundColor,
@@ -13,10 +14,14 @@ class NumPad extends StatelessWidget {
     this.buttonRadius,
     this.numPadVerticalSpacing,
     this.numPadHorizontalSpacing,
+    this.deleteWidget,
+    this.doneWidget,
+    this.enableDone = false,
     super.key,
   });
 
-  final VoidCallback? onDelete;
+  final VoidCallback? onDeleteTap;
+  final VoidCallback? onDoneTap;
 
   final OnNumberButtonPressed onNumberTap;
   final double? buttonElevation;
@@ -26,133 +31,38 @@ class NumPad extends StatelessWidget {
   final double? buttonRadius;
   final double? numPadVerticalSpacing;
   final double? numPadHorizontalSpacing;
+  final Widget? deleteWidget;
+  final Widget? doneWidget;
+  final bool enableDone;
 
   @override
   Widget build(BuildContext context) {
     final buttonColor = buttonBackgroundColor ?? Colors.white;
     final size = buttonSize ?? const Size(70.0, 70.0);
-    final vSizedBox = SizedBox(height: numPadVerticalSpacing ?? 24);
-    final hSizedBox = SizedBox(width: numPadHorizontalSpacing ?? 24);
+    final vGap = SizedBox(height: numPadVerticalSpacing ?? 24);
+    final hGap = SizedBox(width: numPadHorizontalSpacing ?? 24);
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            NumberButton(
-              number: 1,
-              size: size,
-              color: buttonColor,
-              onNumberTap: onNumberTap,
-              buttonElevation: buttonElevation,
-              foregroundColor: buttonForegroundColor,
-              buttonRadius: buttonRadius,
-            ),
-            hSizedBox,
-            NumberButton(
-              number: 2,
-              size: size,
-              color: buttonColor,
-              onNumberTap: onNumberTap,
-              buttonElevation: buttonElevation,
-              foregroundColor: buttonForegroundColor,
-              buttonRadius: buttonRadius,
-            ),
-            hSizedBox,
-            NumberButton(
-              number: 3,
-              size: size,
-              color: buttonColor,
-              onNumberTap: onNumberTap,
-              buttonElevation: buttonElevation,
-              foregroundColor: buttonForegroundColor,
-              buttonRadius: buttonRadius,
-            ),
-          ],
-        ),
-        vSizedBox,
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            NumberButton(
-              number: 4,
-              size: size,
-              color: buttonColor,
-              onNumberTap: onNumberTap,
-              buttonElevation: buttonElevation,
-              foregroundColor: buttonForegroundColor,
-              buttonRadius: buttonRadius,
-            ),
-            hSizedBox,
-            NumberButton(
-              number: 5,
-              size: size,
-              color: buttonColor,
-              onNumberTap: onNumberTap,
-              buttonElevation: buttonElevation,
-              foregroundColor: buttonForegroundColor,
-              buttonRadius: buttonRadius,
-            ),
-            hSizedBox,
-            NumberButton(
-              number: 6,
-              size: size,
-              color: buttonColor,
-              onNumberTap: onNumberTap,
-              buttonElevation: buttonElevation,
-              foregroundColor: buttonForegroundColor,
-              buttonRadius: buttonRadius,
-            ),
-          ],
-        ),
-        vSizedBox,
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            NumberButton(
-              number: 7,
-              size: size,
-              color: buttonColor,
-              onNumberTap: onNumberTap,
-              buttonElevation: buttonElevation,
-              foregroundColor: buttonForegroundColor,
-              buttonRadius: buttonRadius,
-            ),
-            hSizedBox,
-            NumberButton(
-              number: 8,
-              size: size,
-              color: buttonColor,
-              onNumberTap: onNumberTap,
-              buttonElevation: buttonElevation,
-              foregroundColor: buttonForegroundColor,
-              buttonRadius: buttonRadius,
-            ),
-            hSizedBox,
-            NumberButton(
-              number: 9,
-              size: size,
-              color: buttonColor,
-              onNumberTap: onNumberTap,
-              buttonElevation: buttonElevation,
-              foregroundColor: buttonForegroundColor,
-              buttonRadius: buttonRadius,
-            ),
-          ],
-        ),
-        vSizedBox,
+        _buildNumberRow([1, 2, 3], buttonColor, size),
+        vGap,
+        _buildNumberRow([4, 5, 6], buttonColor, size),
+        vGap,
+        _buildNumberRow([7, 8, 9], buttonColor, size),
+        vGap,
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             TextButton(
-              onPressed: onDelete,
+              onPressed: onDeleteTap,
               style: ButtonStyle(
                 foregroundColor: MaterialStatePropertyAll(
-                    Theme.of(context).colorScheme.error),
+                  Theme.of(context).colorScheme.error,
+                ),
               ),
-              child: const Text('Delete'),
+              child: deleteWidget ?? const Text('Delete'),
             ),
-            hSizedBox,
+            hGap,
             NumberButton(
               number: 0,
               size: size,
@@ -162,17 +72,50 @@ class NumPad extends StatelessWidget {
               foregroundColor: buttonForegroundColor,
               buttonRadius: buttonRadius,
             ),
-            hSizedBox,
-            TextButton(
-              onPressed: null,
-              style: TextButton.styleFrom(
-                disabledForegroundColor: Colors.transparent,
-              ),
-              child: const Text('Done'),
-            ),
+            hGap,
+            doneWidget ??
+                TextButton(
+                  onPressed: onDoneTap,
+                  style: enableDone
+                      ? null
+                      : TextButton.styleFrom(
+                          disabledForegroundColor: Colors.transparent,
+                        ),
+                  child: const Text('Done'),
+                ),
           ],
         ),
       ],
+    );
+  }
+
+  Widget _buildNumberRow(List<int?> numbers, Color buttonColor, Size size) {
+    final hSpacing = numPadHorizontalSpacing ?? 24;
+
+    List<Widget> widgets = [];
+
+    for (int? number in numbers) {
+      widgets.addAll([
+        NumberButton(
+          number: number!,
+          size: size,
+          color: buttonColor,
+          onNumberTap: onNumberTap,
+          buttonElevation: buttonElevation,
+          foregroundColor: buttonForegroundColor,
+          buttonRadius: buttonRadius,
+        ),
+        SizedBox(width: hSpacing),
+      ]);
+    }
+
+    if (numbers.isNotEmpty) {
+      widgets.removeLast();
+    }
+
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: widgets,
     );
   }
 }

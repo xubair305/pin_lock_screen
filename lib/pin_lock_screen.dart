@@ -25,6 +25,10 @@ class PinLockScreen extends StatefulWidget {
     this.buttonSize,
     this.numPadVerticalSpacing,
     this.numPadHorizontalSpacing,
+    this.deleteWidget,
+    this.doneWidget,
+    this.onDoneTap,
+    this.enableDone,
   });
 
   ///
@@ -107,6 +111,25 @@ class PinLockScreen extends StatefulWidget {
   ///
   final double? numPadHorizontalSpacing;
 
+  ///
+  /// Widget to override Text('Delete').
+  ///
+  final Widget? deleteWidget;
+
+  ///
+  /// Widget to override Text('Done').
+  ///
+  final Widget? doneWidget;
+
+  final VoidCallback? onDoneTap;
+
+  ///
+  /// default enableDone = false
+  ///
+  /// To show Done button make enableDone = true,
+  ///
+  final bool? enableDone;
+
   @override
   State<PinLockScreen> createState() => _PinLockScreenState();
 }
@@ -132,7 +155,7 @@ class _PinLockScreenState extends State<PinLockScreen> {
         ),
         SizedBox(height: widget.gapBtwDotsAndNumPad ?? 60),
         NumPad(
-          onDelete: _onDelete,
+          onDeleteTap: _onDelete,
           onNumberTap: _onNumberTap,
           buttonElevation: widget.buttonElevation,
           buttonBackgroundColor: widget.buttonBackgroundColor,
@@ -141,6 +164,10 @@ class _PinLockScreenState extends State<PinLockScreen> {
           buttonSize: widget.buttonSize,
           numPadVerticalSpacing: widget.numPadVerticalSpacing,
           numPadHorizontalSpacing: widget.numPadHorizontalSpacing,
+          deleteWidget: widget.deleteWidget,
+          doneWidget: widget.doneWidget,
+          enableDone: widget.enableDone ?? false,
+          onDoneTap: widget.onDoneTap,
         ),
       ],
     );
